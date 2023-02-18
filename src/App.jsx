@@ -1,13 +1,11 @@
 import { useState } from 'react'
-
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <div className="App">
-        test
+<div className="border-2 border-black text-center px-8 text-2xl">
+Hi , there <br /> This React boiler plate code , with tailwind has been generated using a script  <br /> to change the contents of this file go to App.jsx inside src folder <br /> <br /> -- Prakash
     </div>
   )
 }

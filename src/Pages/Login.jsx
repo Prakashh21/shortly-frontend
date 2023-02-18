@@ -1,5 +1,5 @@
 import React from 'react'
-import image from "../assets/image.jpg"
+// import image from "../assets/image.jpg"
 import video from "../assets/video.mp4"
 function Login() {
 
