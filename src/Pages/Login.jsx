@@ -1,9 +1,34 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useState } from 'react'
 // import image from "../assets/image.jpg"
 import video from "../assets/video.mp4"
+
+
 function Login() {
 
+  const [nameState , setNameState] = useState()
+  const [emailState , setEmailState] = useState()
+  const [passwordState , setPasswordState] = useState()
 
+  const signupHandler = (name , email , password) => {
+
+axios(
+      {
+        method: 'post',
+        url: 'http://localhost:7400/user',
+        data: { "name": name ,
+                "email": email,
+                "password": password
+
+      }
+
+      }
+    ).then((resp) => {
+
+      console.log(resp.data)
+
+    })
+  }
 
 
   return (
@@ -21,19 +46,23 @@ function Login() {
             Create account
           </div>
 
-          <div className='flex flex-col items-center mt-8 mb-4 px-4 m:px-0'>
-            <div className='text-left mt-2 p-0 relative'>
+          <div className='flex flex-col items-center mt-12 mb-4 px-4 m:px-0'>
+          <div className='text-left mt-2 p-0 relative'>
+              <label for='name' className='absolute bottom-7 text-sm'>Name</label>
+              <input id='name' placeholder='' value={nameState} onChange = {((e) => setNameState(e.target.value))} className='outline-none h-full w-full border-b-2 border[#E3E1E3]' type="text"></input>
+            </div>
+            <div className='text-left mt-8 p-0 relative'>
               <label for='email' className='absolute bottom-7 text-sm'>Email</label>
-              <input id='email' placeholder='' className='outline-none h-full w-full border-b-2 border[#E3E1E3]' type="text"></input>
+              <input id='email' placeholder='' value={emailState} className='outline-none h-full w-full border-b-2 border[#E3E1E3]' type="text"></input>
             </div>
             <div className='mt-8 text-left relative'>
               <label for='password' className='absolute bottom-7 text-sm'> Password</label>
-              <input id='password' className='outline-none border-b-2 h-full w-full border-[#E3E1E3]' type="password"></input>
+              <input id='password' value={passwordState} onChange={(e) => setPasswordState(e.target.value)} className='outline-none border-b-2 h-full w-full border-[#E3E1E3]' type="password"></input>
             </div>
 
           </div>
 
-          <button className='py-1 bg-[#E3E1E3] hover:bg-[#e11d48] text-base hover:text-white px-16 mb-4 rounded ' type='submit'>
+          <button onClick={() => signupHandler(nameState , emailState , passwordState)} className='py-1 bg-[#E3E1E3] hover:bg-[#e11d48] text-base hover:text-white px-16 mb-4 rounded ' type='submit'>
             Sign up
           </button>
 
